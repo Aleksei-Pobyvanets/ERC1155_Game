@@ -9,6 +9,7 @@ import "@openzeppelin/contracts/utils/Strings.sol";
 
 contract ERC1155Game is ERC1155, Ownable, Pausable, ERC1155Supply {
     uint public pyblicPrice = 0.01 ether;
+    uint public allowListPrice = 0.005 ether;
     uint public maxSupply = 10;
 
 
@@ -24,6 +25,10 @@ contract ERC1155Game is ERC1155, Ownable, Pausable, ERC1155Supply {
 
     function unpause() public onlyOwner {
         _unpause();
+    }
+
+    function allowList(uint id, uint amount) public payable{
+        
     }
 
     function mint( uint256 id, uint256 amount, bytes memory data)
