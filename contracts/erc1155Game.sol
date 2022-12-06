@@ -11,6 +11,7 @@ contract ERC1155Game is ERC1155, Ownable, Pausable, ERC1155Supply {
     uint public pyblicPrice = 0.01 ether;
     uint public allowListPrice = 0.005 ether;
     uint public maxSupply = 10;
+    uint public maxPerWallet = 3;
 
     bool public publicMintOpen = false;
     bool public allowListMintOpen = true;
@@ -31,7 +32,7 @@ contract ERC1155Game is ERC1155, Ownable, Pausable, ERC1155Supply {
         _unpause();
     }
 
-    function allowList(uint id, uint amount) public payable{
+    function allowListMint(uint id, uint amount) public payable{
         require(allowListMintOpen, "allowList Mint is Closed!");
         require(allowList[msg.sender], "Tou are not on the Allow list!");
         require(id < 3, "Wrong ID!");
